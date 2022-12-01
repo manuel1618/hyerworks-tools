@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "hyperworks-tools"
+version = "0.1.0"
+description = ""
+authors = ["Manuel <manuel.ramsaier89@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "hyperworks_tools"}]
+
+[tool.poetry.scripts]
+hyperworkstools = "hyperworks_tools.cli.root:app"
+
+[tool.poetry.dependencies]
+python = "^3.8.9"
+typer = {extras = ["all"], version="^0.7.0"}
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.15.7"
+flake8 = "^6.0.0"
+black = "^22.10.0"
+mypy = "^0.991"
+pytest = "^7.2.0"
+mkdocs = "^1.4.2"
+mkdocstrings = {extras = ["python"], version = "^0.19.0"}
+pytest-cov = "^4.0.0"
+mkdocs-coverage = "^0.2.6"
+git-changelog = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    # Disable missing module docstring since the information
+    # regarding functionality is provided with more than enough
+    # detail by the functions themselves
+    "missing-module-docstring",
+    "too-many-locals"
+]
+
+[tool.pylint.basic]
+# Test files and classes don't need linting
+no-docstring-rgx="^(_|test_|Test)"
+
+[tool.flake8]
+# I have no clue why this is 10, maybe I ought to look it up
+max-complexity = 10
+# We allow longer lines since 80 is quite short
+max-line-length = 100
+
+[tool.black]
+# We allow longer lines since 80 is quite short
+line-length=100

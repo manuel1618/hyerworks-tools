@@ -1,0 +1,41 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  install:
+    desc: Installs the dependencies.
+    cmds:
+      - poetry install --no-root
+
+      
+  lint:
+    desc: Lints the code and reports on issues.
+    cmds:
+      - python -m poetry run black --check hyperworks_tools
+      - |
+        python -m poetry run flake8 hyperworks_tools \
+          --show-source \
+          --statistics \
+          --count
+      - python -m poetry run pylint hyperworks_tools
+
+  build:  
+    desc: Builds the puthon package
+    cmds:
+      - poetry build
+
+  test:
+    desc: Runs tests on the code
+    cmds:
+      - >
+        poetry run pytest
+        --cov=hyperworks_tools
+        --cov-report=html
+
+  cli:
+    desc: Runs the cli. Use 'task cli -- ARG' to specify args.
+    cmds:
+      - poetry run hyperworkstools {{.CLI_ARGS}}
+
+  
