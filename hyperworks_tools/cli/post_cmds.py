@@ -12,4 +12,5 @@ def objectives(
     Extracts the OutFiles from the given path and prints the objective results
     """
     typer.echo(f"Path: {path}")
-    OutFileExtractor(path)
+    extractor = OutFileExtractor(path)
+    extractor.print_objectives()

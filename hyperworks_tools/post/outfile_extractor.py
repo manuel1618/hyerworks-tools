@@ -16,6 +16,11 @@ class OutFileExtractor:
             path (str): Path to the folder containing the .out files
         """
         self.out_files = self.get_out_files(path)
+
+    def print_objectives(self) -> None:
+        """
+        Prints the objective function values of the OutFiles
+        """
         for out_file in self.out_files:
             typer.echo(
                 f"File: {out_file.name} has reached an objective of {out_file.get_objective()}"

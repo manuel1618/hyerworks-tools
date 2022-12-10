@@ -1,4 +1,5 @@
 import os
+from typing import List
 
 
 class OutFile:
@@ -14,8 +15,15 @@ class OutFile:
         """
         self.filepath = filepath
         self.name = os.path.basename(filepath)
-        with open(filepath, "r", encoding="utf-8") as file:
-            self.lines = file.read().splitlines()
+        self.lines = self._read_lines()
+
+    def _read_lines(self) -> List[str]:
+        """
+        Read the lines of the .out file
+        returns: None
+        """
+        with open(self.filepath, "r", encoding="utf-8") as file:
+            return file.read().splitlines()
 
     def get_objective(self) -> float:
         """
@@ -28,6 +36,7 @@ class OutFile:
                 # iterate over the next 10 lines until the line starts with "Objective"
                 for j in range(10):
                     line = self.lines[i + j]
-                    if line.startswith("Objective Function"):
+                    if line.strip().startswith("Objective Function"):
                         objective = float(line.split("=")[1].strip().split(" ")[0])
+                        break
         return objective
