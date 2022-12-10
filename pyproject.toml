@@ -23,8 +23,14 @@ pytest = "^7.2.0"
 mkdocs = "^1.4.2"
 mkdocstrings = {extras = ["python"], version = "^0.19.0"}
 pytest-cov = "^4.0.0"
-mkdocs-coverage = "^0.2.6"
+mkdocs-coverage = "^0.2.5"
+cyclonedx-bom = "^3.6.3"
+mdbom = "^0.3.0"
+pre-commit = "^2.20.0"
+twine = "^4.0.1"
 git-changelog = "^0.6.0"
+setuptools = "^65.6.3"
+packaging = "^22.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -42,6 +48,7 @@ disable = [
 [tool.pylint.basic]
 # Test files and classes don't need linting
 no-docstring-rgx="^(_|test_|Test)"
+disable="R0903"
 
 [tool.flake8]
 # I have no clue why this is 10, maybe I ought to look it up

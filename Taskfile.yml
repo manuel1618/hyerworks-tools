@@ -33,6 +33,17 @@ tasks:
         --cov=hyperworks_tools
         --cov-report=html
 
+  docs-serve:
+    desc: Serve the documentation locally
+    cmds:
+      - poetry run mkdocs serve
+
+  docs-publish:
+    desc: Publish the documentation to gh-pages
+    cmds:
+      - poetry run mkdocs gh-deploy --force
+
+
   cli:
     desc: Runs the cli. Use 'task cli -- ARG' to specify args.
     cmds:
